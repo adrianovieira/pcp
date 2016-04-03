@@ -28,6 +28,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     puppetserver.vm.provider "virtualbox" do |v|
       v.customize [ "modifyvm", :id, "--cpus", "2" ]
       v.customize [ "modifyvm", :id, "--memory", "1024" ]
+      v.customize [ "modifyvm", :id, "--name", "puppetserver.hacklab" ]
+      v.customize [ "modifyvm", :id, "--groups", "/pcp" ]
     end
   end
 
@@ -38,6 +40,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     puppetdb.vm.provider "virtualbox" do |v|
       v.customize [ "modifyvm", :id, "--cpus", "2" ]
       v.customize [ "modifyvm", :id, "--memory", "512" ]
+      v.customize [ "modifyvm", :id, "--name", "puppetdb.hacklab" ]
+      v.customize [ "modifyvm", :id, "--groups", "/pcp" ]
     end
     puppetdb.vm.provision :hosts do |provisioner|
       provisioner.autoconfigure = true
@@ -58,6 +62,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     puppetmq.vm.provider "virtualbox" do |v|
       v.customize [ "modifyvm", :id, "--cpus", "2" ]
       v.customize [ "modifyvm", :id, "--memory", "512" ]
+      v.customize [ "modifyvm", :id, "--name", "puppetmq.hacklab"]
+      v.customize [ "modifyvm", :id, "--groups", "/pcp" ]
     end
     puppetmq.vm.provision :hosts do |provisioner|
       provisioner.autoconfigure = true
