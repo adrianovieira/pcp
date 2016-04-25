@@ -29,7 +29,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.define "puppetserver" do |puppetserver|
     puppetserver.vm.hostname = "puppetserver.hacklab"
     puppetserver.vm.network :private_network, ip: "192.168.250.20"
-    puppetserver.vm.provision "shell", path: "puppet/instala.sh"
+    puppetserver.vm.provision "shell", path: "installer.sh"
     puppetserver.vm.provider "virtualbox" do |v|
       v.customize [ "modifyvm", :id, "--cpus", "2" ]
       v.customize [ "modifyvm", :id, "--memory", "1024" ]
