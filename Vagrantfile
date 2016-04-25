@@ -3,13 +3,15 @@
 
 VAGRANTFILE_API_VERSION = "2"
 
+# vagrant-proxyconf: https://tmatilai.github.io/vagrant-proxyconf
+HTTP_PROXY="http://proxy:3128"
+HTTPS_PROXY=HTTP_PROXY
+
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
-  # configura proxy se necessário e o plugin estiver instalado
   if Vagrant.has_plugin?("vagrant-proxyconf")
-    #vagrant plugin install vagrant-proxyconf (check https://tmatilai.github.io/vagrant-proxyconf/)
-    config.proxy.http     = "http://10.122.19.54:5865"
-    config.proxy.https    = "http://10.122.19.54:5865"
+    config.proxy.http     = HTTP_PROXY
+    config.proxy.https    = HTTPS_PROXY
     config.proxy.no_proxy = "localhost, 127.0.0.1, .hacklab"
   end
 
