@@ -24,9 +24,9 @@ Usando esse Vagrantfile, subir o Puppet se torna uma tarefa simples e rápida.
 
 ## Tecnologias
 
-* Puppet Server 2.1.2
-* PuppetDB 3.2.4
-* Puppet Agent 1.4.1
+* Puppet Server 2.3.2
+* PuppetDB 4.0.2
+* Puppet Agent 1.4.2
 * PostgreSQL 9.4.6
 * Puppet Explorer 2.0.0
 * ActiveMQ 5.9
@@ -42,6 +42,7 @@ Todo ambiente é instalado e configurado via Puppet 4.
 
 * Adriano Vieira
 * Lauro Silveira
+* Taciano Tres
 
 ## Compatibilidade
 
@@ -77,12 +78,12 @@ Para o caso de estar atrás de um serviço proxy:
   vagrant plugin install vagrant-proxyconf
   ```
 
-2. altere as configurações no ```Vagrantfile``` (linhas 11 e 12) de acordo com o seu serviço de proxy
+2. altere as configurações no ```Vagrantfile``` (linhas 7 e 9) de acordo com o seu serviço de proxy
 
-  ```
-  config.proxy.http     = "http://10.122.19.54:5865"
-  config.proxy.https    = "http://10.122.19.54:5865"
-  ```
+```
+HTTP_PROXY="http://proxy:3128"
+HTTPS_PROXY=HTTP_PROXY
+```
 
 ## Ambiente
 
@@ -94,15 +95,15 @@ Existem 3 VMs no ambiente
 
 ### ambiente::puppetserver
 
-Nesta VM será instalado o puppet server 2.1.2, puppet agent 1.4.1.
+Nesta VM será instalado o puppet server, puppetdb-termini e puppet agent.
 
 ### ambiente::puppetdb
 
-Nesta VM será instalado o puppetdb 3.2.4, postgresql 9.4.6, puppet agent 1.4.1.
+Nesta VM será instalado o puppetdb, postgresql, puppet agent e puppet explorer.
 
 ### ambiente::puppetmq
 
-Nesta VM será instalado o activemq 5.9 e puppet agent 1.4.1.
+Nesta VM será instalado o activemq e puppet agent.
 
 ## Uso
 
