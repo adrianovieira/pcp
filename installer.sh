@@ -2,7 +2,8 @@
 
 CONTROL_REPO="https://github.com/puppet-br/pcp-controlrepo"
 
-yum install -y git
+puppet resource package git ensure=present
+puppet resource package vim-enhanced ensure=present
 
 rm -rf /etc/puppetlabs/code/*
 rm -rf /etc/puppetlabs/puppet/ssl
