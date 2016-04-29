@@ -9,6 +9,18 @@ rm -rf /etc/puppetlabs/puppet/ssl
 
 /opt/puppetlabs/puppet/bin/gem install --no-ri --no-rdoc r10k
 
+cat > /etc/puppetlabs/code/hiera.yaml <<EOF
+---
+:backends:
+  - yaml
+:hierarchy:
+  - "nodes/%{::trusted.certname}"
+  - "%{::operatingsystem}-%{::operatingsystemmajrelease}"
+  - "%{::osfamily}-%{::operatingsystemmajrelease}"
+  - "%{::osfamily}"
+  - common
+EOF
+
 mkdir -p /etc/puppetlabs/r10k
 cat > /etc/puppetlabs/r10k/r10k.yaml <<EOF
 ---
