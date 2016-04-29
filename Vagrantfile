@@ -20,6 +20,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       provisioner.add_localhost_hostnames = false
       provisioner.autoconfigure = true
       provisioner.sync_hosts = true
+      provisioner.add_host '192.168.250.20', ['puppet']
     end
   end
 
