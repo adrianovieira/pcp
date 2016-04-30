@@ -25,8 +25,9 @@ Usando esse Vagrantfile, subir o Puppet se torna uma tarefa simples e rápida.
 ## Tecnologias
 
 * Puppet Server 2.3.2
-* PuppetDB 4.0.2
 * Puppet Agent 1.4.2
+* Mcollective 2.8.8
+* PuppetDB 4.0.2
 * PostgreSQL 9.4.6
 * Puppet Explorer 2.0.0
 * ActiveMQ 5.9
