@@ -5,9 +5,6 @@ CONTROL_REPO="https://github.com/puppet-br/pcp-controlrepo"
 puppet resource package git ensure=present
 puppet resource package vim-enhanced ensure=present
 
-firewall-cmd --zone=public --add-port=8140/tcp --permanent
-firewall-cmd --reload
-
 rm -rf /etc/puppetlabs/code/*
 rm -rf /etc/puppetlabs/puppet/ssl
 
