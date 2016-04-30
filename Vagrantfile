@@ -45,7 +45,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     puppetdb.vm.network :private_network, ip: "192.168.250.25"
     puppetdb.vm.provider "virtualbox" do |v|
       v.customize [ "modifyvm", :id, "--cpus", "2" ]
-      v.customize [ "modifyvm", :id, "--memory", "512" ]
+      v.customize [ "modifyvm", :id, "--memory", "1024" ]
       v.customize [ "modifyvm", :id, "--name", "puppetdb.hacklab" ]
       v.customize [ "modifyvm", :id, "--groups", "/pcp" ]
     end
@@ -62,7 +62,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     puppetmq.vm.network :private_network, ip: "192.168.250.30"
     puppetmq.vm.provider "virtualbox" do |v|
       v.customize [ "modifyvm", :id, "--cpus", "2" ]
-      v.customize [ "modifyvm", :id, "--memory", "512" ]
+      v.customize [ "modifyvm", :id, "--memory", "1024" ]
       v.customize [ "modifyvm", :id, "--name", "puppetmq.hacklab"]
       v.customize [ "modifyvm", :id, "--groups", "/pcp" ]
     end
