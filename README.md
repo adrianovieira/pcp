@@ -4,25 +4,24 @@
 #### Tabela de conteudo
 
 1. [Overview](#overview)
-2. [Tecnologias](#tecnologias)
-3. [Autores](#autores)
-4. [Contribuidores](#contribuidores)
-5. [Compatibilidade](#compatibilidade)
-6. [Requisitos](#requisitos)
+2. [technologies](#technologies)
+3. [Authors](#authors)
+4. [Contributors](#contribuidores)
+5. [Compatibility](#compability)
+6. [Requirements](#requirements) 
 7. [Setup](#setup)
-8. [Ambiente](#ambiente)
-9. [Estrutura](#estrutura)
+8. [Environment](#environment)
+9. [Structure](#structure)
 10. [Mcollective](#mcollective)
 11. [PuppetExplorer](#puppetexplorer)
-12. [Debian8](#debian8)
 
 ## Overview
 
-O projeto PCP tem o objetivo de oferecer um ambiente virtual Puppet completo para testes e desenvolvimento de módulos Puppet.
+The PCP project aims to offer a complete Puppet virtual environment for testing and also development of Puppet modules.
 
-Usando esse Vagrantfile, subir o Puppet se torna uma tarefa simples e rápida.
+This vagrantfile provides a easy way to install and integrate the main puppet tools.
 
-## Tecnologias
+## Technologies
 
 * Puppet Server 2.3.2
 * Puppet Agent 1.4.2
@@ -32,24 +31,24 @@ Usando esse Vagrantfile, subir o Puppet se torna uma tarefa simples e rápida.
 * Puppet Explorer 2.0.0
 * ActiveMQ 5.9
 
-Todo ambiente é instalado e configurado via Puppet 4.
+Everything is installed and configured using Puppet 4.
 
-## Autores
+## Authors
 
 * Guto Carvalho (gutocarvalho@gmail.com)
 * Miguel Di Ciurcio Filho (miguel.filho@gmail.com)
 
-## Contribuidores
+## Contributors
 
 * Adriano Vieira
 * Lauro Silveira
 * Taciano Tres
 
-## Compatibilidade
+## Compability
 
-Este projeto foi testado com vagrant boxes CentOS 7
+This project was tested using CentOS 7 and Puppet 4.
 
-## Requisitos
+## Requirements
 
 * Virtualbox >= 4
 * Vagrant >= 1.8
@@ -58,7 +57,7 @@ Este projeto foi testado com vagrant boxes CentOS 7
   * plugin vagrant-proxyconf (caso necessite e esteja atrás de proxy)
 * Box gutocarvalho/centos7x64
 
-Você precisa ter pelo menos 2 GB de RAM livre para subir as VMs.
+You must have at least 3 GB of free RAM to run PCP.
 
 ## Setup
 
@@ -71,111 +70,51 @@ Você precisa ter pelo menos 2 GB de RAM livre para subir as VMs.
 
 ### Proxy Setup
 
-Para o caso de estar atrás de um serviço proxy:
+If you want to use the proxy plugin
 
-1. instale o plugin para proxy
+1. installation
 
   ```
   vagrant plugin install vagrant-proxyconf
   ```
 
-2. altere as configurações no ```Vagrantfile``` (linhas 7 e 9) de acordo com o seu serviço de proxy
+2. configuration
 
 ```
 HTTP_PROXY="http://proxy:3128"
 HTTPS_PROXY=HTTP_PROXY
 ```
 
-## Ambiente
+## Environment
 
-Existem 3 VMs no ambiente
+There are three VMs in the vagrant environment
 
 * puppetserver.hacklab, 192.168.250.20
 * puppetdb.hacklab, 192.168.250.25
 * puppetmq.hacklab, 192.168.250.30
 
-### ambiente::puppetserver
+### environment::puppetserver
 
-Nesta VM será instalado o puppet server, puppetdb-termini e puppet agent.
+puppetserver, puppetdb-termini and puppet agent.
 
-### ambiente::puppetdb
+### environment::puppetdb
 
-Nesta VM será instalado o puppetdb, postgresql, puppet agent e puppet explorer.
+puppetdb, postgresql, puppet agent and puppet explorer.
 
-### ambiente::puppetmq
+### environment::puppetmq
 
-Nesta VM será instalado o activemq e puppet agent.
+activemq and puppet agent.
 
-## Uso
+## Structure
 
-### uso::puppetserver
+This project uses the pcp-controlrepo repository as source to install the
+production environment using r10k.
 
-acessando a vm
-
-    vagrant ssh puppetserver
-
-### uso::puppetdb
-
-acessando a vm
-
-    vagrant ssh puppetdb
-
-### uso::puppetmq
-
-acessando a vm
-
-    vagrant ssh puppetmq
-
-## Estrutura
-
-Este projeto utiliza o repositório pcp-controlrepo como source para o r10k instalar
-o environment production que será utilizado pelo puppet para configurar as VMs.
-
-    https://github.com/gutocarvalho/pcp-controlrepo
-
-O environment trazido deste repositório contém os arquivos abaixo
-
-```
-- environments
-- - production
-- - - Puppetfile
-- - - environment.conf
-- - - hieradata
-- - - - nodes
-- - - - - puppet-pcpm.hacklab.yaml
-- - - - Debian-8.yaml
-- - - - RedHat-7.yaml
-- - - - common.yaml
-- - - manifests
-- - - - site.pp
-- - - site
-- - - - profile
-- - - - - manifests
-- - - - - - mcollective
-- - - - - - - client.pp
-- - - - - - - server.pp
-- - - - - - puppet
-- - - - - - - hiera.pp
-- - - - - - - agent.pp
-- - - - - - - server.pp
-- - - - - - puppetdb
-- - - - - - - app.pp
-- - - - - - - database.pp
-- - - - - - - frontend.pp
-- - - - - - activemq.pp
-- - - - - - ntp.pp
-- - - - role
-- - - - - manifests
-- - - - - - broker.pp
-- - - - - - puppetdb.pp
-- - - - - - puppetmaster.pp
-- - - - - - pcpm.pp
-```
-
+    https://github.com/puppet-br/pcp-controlrepo
 
 ## Mcollective
 
-O Mcollective client foi instalado na vm puppetmq.hacklab, você pode acessar a VM e testá-lo com o comando find.
+You can test the mcollective through the puppetmq.hacklab vm
 
     vagrant ssh puppetmq.hacklab
     sudo -i
@@ -183,10 +122,10 @@ O Mcollective client foi instalado na vm puppetmq.hacklab, você pode acessar a 
 
 ## PuppetExplorer
 
-Acesse o puppet explorer através da URL
+Access the puppet explorer dashboard throught this address
 
     https://puppetdb.hacklab
 
-Aceite o certificado, se possível use firefox ou chrome.
+You need to accept the certificate.
 
-Rode o agente algumas vezes em cada nó para visualizar mais informações no dashboard.
+Run the agent on all VMs to create more reports.
