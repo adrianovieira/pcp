@@ -63,8 +63,8 @@ You must have at least 3 GB of free RAM to run PCP smoothly.
 
     vagrant plugin install vagrant-hosts
     vagrant plugin install vagrant-hostsupdater
-    vagrant box add gutocarvalho/centos7x64
-    git clone https://github.com/gutocarvalho/pcp.git
+    vagrant box add puppetlabs/centos-7.2-64-puppet
+    git clone https://github.com/puppet-br/pcp.git
     cd pcp
     vagrant up
 
