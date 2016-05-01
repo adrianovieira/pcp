@@ -29,7 +29,7 @@ This vagrantfile provides a easy way to install and integrate the main puppet to
 * PuppetDB 4.0.2
 * PostgreSQL 9.4.6
 * Puppet Explorer 2.0.0
-* ActiveMQ 5.9
+* ActiveMQ 5.13.2
 
 Everything is installed and configured using Puppet 4.
 
