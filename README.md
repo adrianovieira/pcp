@@ -52,12 +52,12 @@ This project was tested using CentOS 7 and Puppet 4.
 
 * Virtualbox >= 4
 * Vagrant >= 1.8
-  * plugin vagrant-hostsupdater (atua no host)
-  * plugin vagrant-hosts (atua no guest)
-  * plugin vagrant-proxyconf (caso necessite e esteja atrás de proxy)
-* Box gutocarvalho/centos7x64
+  * plugin vagrant-hostsupdater (host records on host)
+  * plugin vagrant-hosts (host records on guests)
+  * plugin vagrant-proxyconf
+* Box puppetlabs/centos-7.2-64-puppet
 
-You must have at least 3 GB of free RAM to run PCP.
+You must have at least 3 GB of free RAM to run PCP smoothly.
 
 ## Setup
 
@@ -72,13 +72,13 @@ You must have at least 3 GB of free RAM to run PCP.
 
 If you want to use the proxy plugin
 
-1. installation
+1. Installation
 
   ```
   vagrant plugin install vagrant-proxyconf
   ```
 
-2. configuration
+2. Configuration
 
 ```
 HTTP_PROXY="http://proxy:3128"
