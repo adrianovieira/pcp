@@ -7,7 +7,7 @@
 2. [Technologies](#technologies)
 3. [Authors](#authors)
 4. [Contributors](#contribuidores)
-5. [Compatibility](#compability)
+5. [Compatibility](#compatibility)
 6. [Requirements](#requirements) 
 7. [Setup](#setup)
 8. [Environment](#environment)
@@ -44,7 +44,7 @@ Everything is installed and configured using Puppet 4.
 * Lauro Silveira
 * Taciano Tres
 
-## Compability
+## Compatibility
 
 This project was tested using CentOS 7 and Puppet 4.
 
