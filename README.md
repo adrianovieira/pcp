@@ -10,8 +10,8 @@
 5. [Compatibility](#compatibility)
 6. [Requirements](#requirements) 
 7. [Setup](#setup)
-8. [Environment](#environment)
-9. [Structure](#structure)
+8. [VMs](#vms)
+9. [Control](#control)
 10. [Mcollective](#mcollective)
 11. [PuppetExplorer](#puppetexplorer)
 
@@ -85,27 +85,27 @@ HTTP_PROXY="http://proxy:3128"
 HTTPS_PROXY=HTTP_PROXY
 ```
 
-## Environment
+## VMs
 
-There are three VMs in the vagrant environment
+There are three VMs in the vagrantfile
 
 * puppetserver.hacklab, 192.168.250.20
 * puppetdb.hacklab, 192.168.250.25
 * puppetmq.hacklab, 192.168.250.30
 
-### environment::puppetserver
+### vm::puppetserver
 
 puppetserver, puppetdb-termini and puppet agent.
 
-### environment::puppetdb
+### vm::puppetdb
 
 puppetdb, postgresql, puppet agent and puppet explorer.
 
-### environment::puppetmq
+### vm::puppetmq
 
 activemq and puppet agent.
 
-## Structure
+## Control
 
 This project uses the pcp-controlrepo repository as source to install the
 production environment using r10k.
