@@ -1,10 +1,10 @@
 # PCP
 ## [P]uppet [C]ommunity [P]latform
 
-#### Tabela de conteudo
+#### Table of contents
 
 1. [Overview](#overview)
-2. [technologies](#technologies)
+2. [Technologies](#technologies)
 3. [Authors](#authors)
 4. [Contributors](#contribuidores)
 5. [Compatibility](#compability)
