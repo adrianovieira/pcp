@@ -27,7 +27,7 @@ This vagrantfile provides a easy way to install and integrate the main puppet to
 * Puppet Agent 1.4.2
 * Mcollective 2.8.8
 * PuppetDB 4.0.2
-* PostgreSQL 9.4.6
+* PostgreSQL 9.4.8
 * Puppet Explorer 2.0.0
 * ActiveMQ 5.13.2
 
