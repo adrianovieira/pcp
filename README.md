@@ -102,7 +102,7 @@ There is one VM in the vagrantfile of the monolitic installation
   * puppetdb, postgresql, puppet agent and puppet explorer
   * activemq and puppet agent
 
-Everthing will be installed together.
+Everything will be installed together.
 
 ## 8.2 Split installation
 
@@ -128,7 +128,7 @@ It's just an example, you can fork, modify or use your own control repo.
 
 ### 11.1 Monolitic
 
-You can test the mcollective through the puppet-pcpm.hacklab vm
+To test mcollective use the commands below
 
     vagrant ssh puppet-pcpm.hacklab
     sudo -i
@@ -136,7 +136,7 @@ You can test the mcollective through the puppet-pcpm.hacklab vm
 
 ### 11.2 Split
 
-You can test the mcollective through the puppetmq.hacklab vm
+To test mcollective use the commands below
 
     vagrant ssh puppetmq.hacklab
     sudo -i
@@ -146,7 +146,7 @@ You can test the mcollective through the puppetmq.hacklab vm
 
 ### 11.1 Monolitic
 
-Access the puppet explorer dashboard throught this address
+To access the puppet explorer dashboard use the url below
 
     https://puppet-pcpm.hacklab
 
@@ -156,7 +156,7 @@ Run the agent to create more reports.
 
 ### 11.1 Split
 
-Access the puppet explorer dashboard throught this address
+To access the puppet explorer dashboard use the url below
 
     https://puppetdb.hacklab
 
@@ -166,7 +166,7 @@ Run the agent on all VMs to create more reports.
 
 ## 12. Proxy
 
-If you want to use the vagrant proxy plugin
+To use the vagrant proxy plugin follow the instructions
 
 ### 12.1. Installation
 
