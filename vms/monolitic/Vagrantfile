@@ -47,6 +47,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.define "puppetserver" do |puppetserver|
     puppetserver.vm.hostname = "puppet-pcpm.hacklab"
     puppetserver.vm.network :private_network, ip: VGVM_PVTNET
+    puppetserver.hostsupdater.aliases = ["puppetboard.hacklab", "puppetexplorer.hacklab"]
     puppetserver.vm.provision "shell", path: "installer.sh"
     puppetserver.vm.provider "virtualbox" do |v|
       v.customize [ "modifyvm", :id, "--cpus", "2" ]
