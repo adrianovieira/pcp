@@ -4,6 +4,12 @@
 # VM private network (default: 192.168.250.35)
 VGVM_PVTNET = ENV.key?('VGVM_PVTNET') ? ENV['VGVM_PVTNET'] : '192.168.250.35'
 
+# VM memory on virtualbox (default: 1024MB)
+VGVM_MEMORY = ENV.key?('VGVM_MEMORY') ? ENV['VGVM_MEMORY'] : 2048
+
+# VM cpu/cores on virtualbox (default: 1 cpu/core)
+VGVM_CPU = ENV.key?('VGVM_CPU') ? ENV['VGVM_CPU'] : 2
+
 # vagrant-proxyconf: https://tmatilai.github.io/vagrant-proxyconf
 # if necessary set OS environment variable PROXY|HTTP_PROXY|HTTPS_PROXY="http://proxy:port"
 if ENV.key?('PROXY')
@@ -50,8 +56,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     puppetserver.hostsupdater.aliases = ["puppetboard.hacklab", "puppetexplorer.hacklab"]
     puppetserver.vm.provision "shell", path: "installer.sh"
     puppetserver.vm.provider "virtualbox" do |v|
-      v.customize [ "modifyvm", :id, "--cpus", "2" ]
-      v.customize [ "modifyvm", :id, "--memory", "3072" ]
+      v.customize [ "modifyvm", :id, "--cpus", VGVM_CPU ]
+      v.customize [ "modifyvm", :id, "--memory", VGVM_MEMORY ]
       v.customize [ "modifyvm", :id, "--name", "puppet-pcpm.hacklab" ]
       v.customize [ "modifyvm", :id, "--groups", "/pcp" ]
     end
