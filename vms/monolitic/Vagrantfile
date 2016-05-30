@@ -1,10 +1,32 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
+# vagrant-proxyconf: https://tmatilai.github.io/vagrant-proxyconf
+# if necessary set OS environment variable PROXY|HTTP_PROXY|HTTPS_PROXY="http://proxy:port"
+if ENV.key?('PROXY')
+  HTTP_PROXY=ENV['PROXY']
+elsif ENV.key?('proxy')
+  HTTP_PROXY=ENV['proxy']
+else
+  print Vagrant.has_plugin?("vagrant-proxyconf") ?
+          "WARN: you installed vagrant-proxyconf plugin, but proxy environment variable (PROXY) not set yet!\n\n" : ''
+  HTTP_PROXY="http://proxy_not_set:3128"
+end
+HTTPS_PROXY=HTTP_PROXY
+
 VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
+  if Vagrant.has_plugin?("vagrant-proxyconf") && (HTTP_PROXY != "http://proxy_not_set:3128") # proxy settings
+    config.proxy.http     = HTTP_PROXY
+    config.proxy.https    = HTTPS_PROXY
+    config.proxy.no_proxy = "localhost, 127.0.0.1, .hacklab"
+    print "proxy settings: \n"
+    print " - proxy.http:  "+config.proxy.http+"\n"
+    print " - proxy.https: "+config.proxy.https+"\n"
+    print " - no_proxy: "+config.proxy.no_proxy+"\n\n"
+  end # end proxy settings
 
   if Vagrant.has_plugin?("vagrant-hosts")
     config.vm.provision :hosts do |provisioner|
