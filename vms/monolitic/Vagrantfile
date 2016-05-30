@@ -38,6 +38,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   end
 
   config.vm.box = "puppetlabs/centos-7.2-64-puppet"
+  config.vm.box_check_update = false
 
   # puppet server + puppet agent
   config.vm.define "puppetserver" do |puppetserver|
