@@ -10,6 +10,9 @@ VGVM_MEMORY = ENV.key?('VGVM_MEMORY') ? ENV['VGVM_MEMORY'] : 2048
 # VM cpu/cores on virtualbox (default: 1 cpu/core)
 VGVM_CPU = ENV.key?('VGVM_CPU') ? ENV['VGVM_CPU'] : 2
 
+# Puppet/r10k Control repository to install from
+VGVM_PP_CONTROL_REPO = ENV.key?('VGVM_PP_CONTROL_REPO') ? ENV['VGVM_PP_CONTROL_REPO'] : 'https://github.com/puppet-br/pcp-controlrepo'
+
 # vagrant-proxyconf: https://tmatilai.github.io/vagrant-proxyconf
 # if necessary set OS environment variable PROXY|HTTP_PROXY|HTTPS_PROXY="http://proxy:port"
 if ENV.key?('PROXY')
@@ -54,7 +57,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     puppetserver.vm.hostname = "puppet-pcpm.hacklab"
     puppetserver.vm.network :private_network, ip: VGVM_PVTNET
     puppetserver.hostsupdater.aliases = ["puppetboard.hacklab", "puppetexplorer.hacklab"]
-    puppetserver.vm.provision "shell", path: "installer.sh"
+    puppetserver.vm.provision "shell", path: "installer.sh", args: [VGVM_PP_CONTROL_REPO]
     puppetserver.vm.provider "virtualbox" do |v|
       v.customize [ "modifyvm", :id, "--cpus", VGVM_CPU ]
       v.customize [ "modifyvm", :id, "--memory", VGVM_MEMORY ]
