@@ -1,6 +1,9 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
+# VM private network (default: 192.168.250.35)
+VGVM_PVTNET = ENV.key?('VGVM_PVTNET') ? ENV['VGVM_PVTNET'] : '192.168.250.35'
+
 # vagrant-proxyconf: https://tmatilai.github.io/vagrant-proxyconf
 # if necessary set OS environment variable PROXY|HTTP_PROXY|HTTPS_PROXY="http://proxy:port"
 if ENV.key?('PROXY')
@@ -33,7 +36,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       provisioner.add_localhost_hostnames = false
       provisioner.autoconfigure = true
       provisioner.sync_hosts = true
-      provisioner.add_host '192.168.250.35', ['puppet']
+      provisioner.add_host VGVM_PVTNET, ['puppet']
     end
   end
 
@@ -43,7 +46,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # puppet server + puppet agent
   config.vm.define "puppetserver" do |puppetserver|
     puppetserver.vm.hostname = "puppet-pcpm.hacklab"
-    puppetserver.vm.network :private_network, ip: "192.168.250.35"
+    puppetserver.vm.network :private_network, ip: VGVM_PVTNET
     puppetserver.vm.provision "shell", path: "installer.sh"
     puppetserver.vm.provider "virtualbox" do |v|
       v.customize [ "modifyvm", :id, "--cpus", "2" ]
