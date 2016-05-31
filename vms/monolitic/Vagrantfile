@@ -11,7 +11,9 @@ VGVM_MEMORY = ENV.key?('VGVM_MEMORY') ? ENV['VGVM_MEMORY'] : 2048
 VGVM_CPU = ENV.key?('VGVM_CPU') ? ENV['VGVM_CPU'] : 2
 
 # Puppet/r10k Control repository to install from
-VGVM_PP_CONTROL_REPO = ENV.key?('VGVM_PP_CONTROL_REPO') ? ENV['VGVM_PP_CONTROL_REPO'] : 'https://github.com/puppet-br/pcp-controlrepo'
+VGVM_PP_CONTROL_REPO = ENV.key?('VGVM_PP_CONTROL_REPO') ?
+                        ENV['VGVM_PP_CONTROL_REPO'] :
+                       'https://github.com/puppet-br/pcp-controlrepo'
 
 # vagrant-proxyconf: https://tmatilai.github.io/vagrant-proxyconf
 # if necessary set OS environment variable PROXY|HTTP_PROXY|HTTPS_PROXY="http://proxy:port"
@@ -21,7 +23,9 @@ elsif ENV.key?('proxy')
   HTTP_PROXY=ENV['proxy']
 else
   print Vagrant.has_plugin?("vagrant-proxyconf") ?
-          "WARN: you installed vagrant-proxyconf plugin, but proxy environment variable (PROXY) not set yet!\n\n" : ''
+          "WARN: you installed vagrant-proxyconf plugin, "+
+          "but proxy environment variable (PROXY) not set yet!\n\n" : ''
+
   HTTP_PROXY="http://proxy_not_set:3128"
 end
 HTTPS_PROXY=HTTP_PROXY
@@ -30,7 +34,8 @@ VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
-  if Vagrant.has_plugin?("vagrant-proxyconf") && (HTTP_PROXY != "http://proxy_not_set:3128") # proxy settings
+  if Vagrant.has_plugin?("vagrant-proxyconf") &&
+      (HTTP_PROXY != "http://proxy_not_set:3128") # proxy settings
     config.proxy.http     = HTTP_PROXY
     config.proxy.https    = HTTPS_PROXY
     config.proxy.no_proxy = "localhost, 127.0.0.1, .hacklab"
